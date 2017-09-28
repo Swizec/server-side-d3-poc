@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import data from './data.csv';
+//import data from './data.csv';
 import * as d3 from 'd3';
 
 import { LineChart } from './LineChart';
@@ -16,7 +16,7 @@ class App extends Component {
 
     componentWillMount() {
         const dateParse = d3.timeParse("%d %b %Y");
-        d3.csv(data)
+        d3.csv("https://raw.githubusercontent.com/Swizec/server-side-d3-poc/master/src/data.csv")
           .row(({ date, time, runner }) => ({
               date: dateParse(date),
               time: time.split(':')

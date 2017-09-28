@@ -5,7 +5,7 @@ const React = require('react')
 const {renderToString} = require('react-dom/server')
 
 //const {default: configureStore} = require('../src/store')
-//const {default: App} = require('../src/App')
+const {default: App} = require('../src/App')
 
 module.exports = function universalLoader(req, res) {
   const filePath = path.resolve(__dirname, '..', 'build', 'index.html')
@@ -16,7 +16,7 @@ module.exports = function universalLoader(req, res) {
       return res.status(404).end()
     }
     const markup = renderToString(
-        <p>Hello</p>
+        <App />
     );
 
       // we're good, send the response

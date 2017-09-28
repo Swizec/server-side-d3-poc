@@ -33,7 +33,5 @@ app.use('/', index)
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, '..', 'build')))
 
-// Always return the main index.html, so react-router render the route in the client
-app.use('/', universalLoader)
 
 module.exports = app
