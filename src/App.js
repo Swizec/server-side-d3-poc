@@ -30,10 +30,11 @@ class App extends Component {
     });
 
     componentWillMount() {
-        d3.csv("https://raw.githubusercontent.com/Swizec/server-side-d3-poc/master/src/data.csv")
-          .row(this.rowParse)
-          .get(data => this.setState({ data }))
-       }
+        if (!this.state.data.length) {
+            d3.csv("https://raw.githubusercontent.com/Swizec/server-side-d3-poc/master/src/data.csv")
+              .row(this.rowParse)
+              .get(data => this.setState({ data }))
+        }
     }
 
     render() {
