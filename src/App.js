@@ -16,7 +16,6 @@ class App extends Component {
 
     componentWillMount() {
         const dateParse = d3.timeParse("%d %b %Y");
-
         d3.csv(data)
           .row(({ date, time, runner }) => ({
               date: dateParse(date),
