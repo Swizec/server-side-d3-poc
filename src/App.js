@@ -10,22 +10,30 @@ import { LineChart } from './LineChart';
 const If = ({ c, children }) => c() ? children : null;
 
 class App extends Component {
-    state = {
-        data: []
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            data: (props.data || []).map(this.rowParse)
+        }
     }
 
+    dateParse = d3.timeParse("%d %b %Y");
+
+    rowParse = ({ date, time, runner }) => ({
+        date: this.dateParse(date),
+        time: time.split(':')
+                  .map(Number)
+                  .reverse()
+                  .reduce((t, n, i) => i > 0 ? t+n*60**i : n),
+        runner
+    });
+
     componentWillMount() {
-        const dateParse = d3.timeParse("%d %b %Y");
         d3.csv("https://raw.githubusercontent.com/Swizec/server-side-d3-poc/master/src/data.csv")
-          .row(({ date, time, runner }) => ({
-              date: dateParse(date),
-              time: time.split(':')
-                        .map(Number)
-                        .reverse()
-                        .reduce((t, n, i) => i > 0 ? t+n*60**i : n),
-              runner
-          }))
+          .row(this.rowParse)
           .get(data => this.setState({ data }))
+       }
     }
 
     render() {

@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "body-parser": "^1.18.2",
+    "csv": "^1.1.1",
+    "csv-parse": "^1.2.3",
+    "csvtojson": "^1.1.7",
     "d3": "^4.10.2",
     "express": "^4.15.5",
     "ignore-styles": "^5.0.1",
